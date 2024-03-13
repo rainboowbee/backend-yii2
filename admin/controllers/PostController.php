@@ -59,7 +59,7 @@ class PostController extends Controller
 
     /**
      * Displays a single Post model.
-     * @param int $id ID
+     * @param int $id Код
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -95,7 +95,7 @@ class PostController extends Controller
     /**
      * Updates an existing Post model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
+     * @param int $id Код
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -115,7 +115,7 @@ class PostController extends Controller
     /**
      * Deletes an existing Post model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id ID
+     * @param int $id Код
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -129,7 +129,7 @@ class PostController extends Controller
     /**
      * Finds the Post model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id ID
+     * @param int $id Код
      * @return Post the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */

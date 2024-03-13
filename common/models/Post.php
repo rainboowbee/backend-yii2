@@ -8,14 +8,14 @@ use Yii;
  * This is the model class for table "post".
  *
  * @property int $id
- * @property int $user_id
- * @property string $title
+ * @property int|null $user_id
+ * @property string|null $title
  * @property string|null $text
- * @property int $post_category_id
- * @property int $status
- * @property string $image
- * @property string $created_at
- * @property string $updated_at
+ * @property int|null $post_category_id
+ * @property int|null $status
+ * @property string|null $image
+ * @property string|null $created_at
+ * @property string|null $updated_at
  */
 class Post extends \yii\db\ActiveRecord
 {
@@ -33,7 +33,6 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'title', 'post_category_id', 'status', 'image', 'created_at', 'updated_at'], 'required'],
             [['user_id', 'post_category_id', 'status'], 'integer'],
             [['text'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
@@ -55,7 +54,7 @@ class Post extends \yii\db\ActiveRecord
             'status' => 'Статус',
             'image' => 'Изображение',
             'created_at' => 'Создан',
-            'updated_at' => 'Обнавлен',
+            'updated_at' => 'Обновлен',
         ];
     }
 }
