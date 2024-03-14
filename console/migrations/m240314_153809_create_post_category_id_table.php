@@ -12,7 +12,7 @@ class m240314_153809_create_post_category_id_table extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('{{%post_category_id}}', [
+        $this->createTable('{{%postCategory}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string(),
         ]);
