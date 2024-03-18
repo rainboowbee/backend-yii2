@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Post', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать пост', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
 
@@ -29,12 +29,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'user_id',
             'title',
-            'text:ntext',
+            'text',
             'post_category_id',
             'status',
             'image',
             'created_at',
-            'updated_at',
+            'upadated_at',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Post $model, $key, $index, $column) {
