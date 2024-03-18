@@ -24,7 +24,7 @@ class m240316_162119_create_post_table extends Migration
             'status' => $this->integer(),
             'image' => $this->string(),
             'created_at' => $this->integer(),
-            'upadated_at' => $this->integer(),
+            'updated_at' => $this->integer(),
         ]);
 
         // creates index for column `post_category_id`

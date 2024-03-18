@@ -3,6 +3,10 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
+
+
 
 /**
  * This is the model class for table "post".
@@ -15,7 +19,7 @@ use Yii;
  * @property int|null $status
  * @property string|null $image
  * @property int|null $created_at
- * @property int|null $upadated_at
+ * @property int|null $updated_at
  *
  * @property Postcategory $postCategory
  */
@@ -24,6 +28,14 @@ class Post extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public function behaviors()
+    {
+        return [
+            'class' => TimestampBehavior::class,
+        ];
+    }
+
+
     public static function tableName()
     {
         return 'post';
@@ -35,7 +47,7 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'post_category_id', 'status', 'created_at', 'upadated_at'], 'integer'],
+            [['user_id', 'post_category_id', 'status', 'created_at', 'updated_at'], 'integer'],
             [['title', 'text', 'image'], 'string', 'max' => 255],
             [['post_category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Postcategory::class, 'targetAttribute' => ['post_category_id' => 'id']],
         ];
@@ -55,7 +67,7 @@ class Post extends \yii\db\ActiveRecord
             'status' => 'Статус',
             'image' => 'Изображение',
             'created_at' => 'Создан',
-            'upadated_at' => 'Обновлен',
+            'updated_at' => 'Обновлен',
         ];
     }
 

@@ -16,6 +16,12 @@ class m240316_161342_create_post_category_table extends Migration
             'id' => $this->primaryKey(),
             'name' => $this->string(),
         ]);
+
+        $this->batchInsert('{{%postcategory}}', ['name'], [
+            ['Категория 1'],
+            ['Категория 2'],
+            ['Категория 3'],
+        ]);
     }
 
     /**
