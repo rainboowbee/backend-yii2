@@ -1,5 +1,6 @@
 <?php
 
+use common\models\Post;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -33,11 +34,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'user_id',
             'title',
             'text',
-            'post_category_id',
-            'status',
+            [
+                'attribute' => 'Категория',
+                'value' => static fn (Post $post) => $post->postCategory?->name
+            ],
             'image',
-            'created_at',
-            'updated_at',
+            'status',
+            'created_at:datetime',
+            'updated_at:datetime',
         ],
     ]) ?>
 

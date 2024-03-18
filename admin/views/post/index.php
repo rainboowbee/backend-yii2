@@ -20,6 +20,13 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Создать пост', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
+    <?php
+    const status_list = [
+        '0' => 'brandnew',
+        '1' => 'published',
+        '2' => 'rejected',
+    ]
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -30,11 +37,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'user_id',
             'title',
             'text',
-            'post_category_id',
+            [
+                'attribute' => 'Категория',
+                'value' => static fn (Post $post) => $post->postCategory?->name
+            ],
             'status',
             'image',
-            'created_at',
-            'updated_at',
+            [
+                'attribute' => 'created_at',
+                'format' => ['date', 'php:Y-m-d']
+            ],
+            [
+                'attribute' => 'updated_at',
+                'format' => ['date', 'php:Y-m-d']
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Post $model, $key, $index, $column) {

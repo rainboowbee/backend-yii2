@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
 
 
@@ -63,7 +64,7 @@ class Post extends \yii\db\ActiveRecord
             'user_id' => 'Код пользователя',
             'title' => 'Заголовок',
             'text' => 'Текст',
-            'post_category_id' => 'Код категории',
+            'post_category_id' => 'Категория',
             'status' => 'Статус',
             'image' => 'Изображение',
             'created_at' => 'Создан',
@@ -80,4 +81,5 @@ class Post extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Postcategory::class, ['id' => 'post_category_id']);
     }
+
 }
