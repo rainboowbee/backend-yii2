@@ -6,7 +6,7 @@ use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
-
+use yii\web\UploadedFile;
 
 
 /**
@@ -26,6 +26,8 @@ use yii\db\ActiveRecord;
  */
 class Post extends \yii\db\ActiveRecord
 {
+    public UploadedFile|string|null $imageFile = null;
+
     /**
      * {@inheritdoc}
      */
@@ -51,6 +53,8 @@ class Post extends \yii\db\ActiveRecord
             [['user_id', 'post_category_id', 'status', 'created_at', 'updated_at'], 'integer'],
             [['title', 'text', 'image'], 'string', 'max' => 255],
             [['post_category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Postcategory::class, 'targetAttribute' => ['post_category_id' => 'id']],
+            [['imageFile'], 'file'],
+
         ];
     }
 
@@ -80,6 +84,32 @@ class Post extends \yii\db\ActiveRecord
     public function getPostCategory()
     {
         return $this->hasOne(Postcategory::class, ['id' => 'post_category_id']);
+    }
+
+    public function beforeValidate(): bool
+    {
+        $this->imageFile = UploadedFile::getInstance($this, 'imageFile');
+        return parent::beforeValidate();
+    }
+
+    public function beforeSave($insert): bool
+    {
+        if ($this->imageFile !== null) {
+            $htdocs = Yii::getAlias('@public');
+            $name = '/uploads/' . Yii::$app->security->generateRandomString() . '.' . $this->imageFile->extension;
+            if (!$insert) {
+                if (file_exists($htdocs . $this->image) && !is_dir($htdocs . $this->image)) {
+                    unlink($htdocs . $this->image);
+                }
+            }
+
+
+            $this->image = $name;
+            $filePath = $htdocs . $this->image;
+            $this->imageFile->saveAs($filePath);
+        }
+
+        return parent::beforeSave($insert);
     }
 
 }

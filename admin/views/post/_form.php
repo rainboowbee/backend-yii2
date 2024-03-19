@@ -17,7 +17,7 @@ use yii\widgets\ActiveField;
 
 <div class="post-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?php
         $category = Postcategory::find()->all();
@@ -44,7 +44,13 @@ use yii\widgets\ActiveField;
 
     <?= $form->field($model, 'post_category_id')->dropDownList($items, $params) ?>
 
-    <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
+    <?php
+     if(!empty($model->logo)) {
+         echo Html::img($model->logo, $options = ['class' => 'postImg', 'style' =>['width' => '180px']]);
+     }
+    ?>
+
+    <?= $form->field($model, 'imageFile')->fileInput() ?>
 
     <?= $form->field($model, 'status')->dropDownList([
         '0' => 'brandnew',

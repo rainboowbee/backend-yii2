@@ -48,7 +48,8 @@
     "yiisoft/yii2-queue": "^2.3",
     "yiisoft/yii2-symfonymailer": "^2.0.0",
     "sjaakp/yii2-wysiwyg": "*",
-    "mihaildev/yii2-ckeditor": "*"
+    "mihaildev/yii2-ckeditor": "*",
+    "yiisoft/yii2-imagine": "^2.2"
   },
   "require-dev": {
     "bower-asset/swagger-ui": "^4.17",
