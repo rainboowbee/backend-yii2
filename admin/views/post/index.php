@@ -42,7 +42,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'Категория',
                 'value' => static fn (Post $post) => $post->postCategory?->name
             ],
-            'status',
+            [
+                'attribute' => 'Статус',
+                'value' => function ($model) {
+                    return match ($model->status) {
+                        0 => 'brandnew',
+                        1 => 'published',
+                        2 => 'rejected',
+                        default => $model->status,
+                    };
+                }
+            ],
             'image',
             [
                 'attribute' => 'created_at',
